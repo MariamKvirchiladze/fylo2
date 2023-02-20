@@ -6,24 +6,28 @@ const input1 = document.querySelector(`#email-1`);
 const input2 = document.querySelector(`#email-2`);
 const error1 = document.querySelector(`#error1`);
 const error2 = document.querySelector(`#error2`);
-const submit1 = document.querySelector(`#submit-1`);
-const submit2 = document.querySelector(`#submit-2`);
+const form1 = document.querySelector(`#form-1`);
+const form2 = document.querySelector(`#footer-form`);
 
-submit1.addEventListener(`click`, () => {
-  validateEmail(input1, error1);
-});
-submit2.addEventListener(`click`, () => {
-  validateEmail(input2, error2);
-});
-
-function validateEmail(x, y) {
-  if (x.value.match(validEmail)) {
-    x.style.border = `0.625px solid #07043b`;
-    y.style.display = `none`;
-    return true;
+form1.addEventListener(`submit`, function (event) {
+  if (input1.value.match(validEmail)) {
+    input1.style.border = `0.625px solid #07043b`;
+    error1.style.display = `none`;
   } else {
-    x.style.border = `0.625px solid #EF4877`;
-    y.style.display = `block`;
+    input1.style.border = `0.625px solid #EF4877`;
+    error1.style.display = `block`;
+    event.preventDefault();
     return false;
   }
-}
+});
+form2.addEventListener(`submit`, function (event) {
+  if (input2.value.match(validEmail)) {
+    input2.style.border = `0.625px solid #07043b`;
+    error2.style.display = `none`;
+  } else {
+    input2.style.border = `0.625px solid #EF4877`;
+    error2.style.display = `block`;
+    event.preventDefault();
+    return false;
+  }
+});
